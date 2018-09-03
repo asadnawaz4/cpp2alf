@@ -109,7 +109,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="Case Study\Railway\Readme.docx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -122,32 +121,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Case Study\ATM\._Account.cpp" />
-    <Content Include="Case Study\ATM\._Account.h" />
-    <Content Include="Case Study\ATM\._ATM.cpp" />
-    <Content Include="Case Study\ATM\._ATM.h" />
-    <Content Include="Case Study\ATM\._ATMCaseStudy.cpp" />
-    <Content Include="Case Study\ATM\._BalanceInquiry.cpp" />
-    <Content Include="Case Study\ATM\._BalanceInquiry.h" />
-    <Content Include="Case Study\ATM\._BankDatabase.cpp" />
-    <Content Include="Case Study\ATM\._BankDatabase.h" />
-    <Content Include="Case Study\ATM\._CashDispenser.cpp" />
-    <Content Include="Case Study\ATM\._CashDispenser.h" />
-    <Content Include="Case Study\ATM\._Deposit.cpp" />
-    <Content Include="Case Study\ATM\._Deposit.h" />
-    <Content Include="Case Study\ATM\._DepositSlot.cpp" />
-    <Content Include="Case Study\ATM\._DepositSlot.h" />
-    <Content Include="Case Study\ATM\._Keypad.cpp" />
-    <Content Include="Case Study\ATM\._Keypad.h" />
-    <Content Include="Case Study\ATM\._Screen.cpp" />
-    <Content Include="Case Study\ATM\._Screen.h" />
-    <Content Include="Case Study\ATM\._Transaction.cpp" />
-    <Content Include="Case Study\ATM\._Transaction.h" />
-    <Content Include="Case Study\ATM\._Withdrawal.cpp" />
-    <Content Include="Case Study\ATM\._Withdrawal.h" />
-    <Content Include="Case Study\Railway\railway reservation system.cpp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
