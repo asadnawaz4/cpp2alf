@@ -7,6 +7,8 @@ Microsoft .Net Framework 4.5.2
 ### How to get the desired files
 - **CPP2ALF** Folder contains source code of Cpp2Alf.
 
+- **User Manual For Cpp2ALF.pdf** file contains the User Manual for running the tool.
+
 - **ATM_CaseStudy** Folder contains ATM Case Study which is tested in this tool.
 
 - **ToyExample** Folder contains a toy example which is tested in this tool.
