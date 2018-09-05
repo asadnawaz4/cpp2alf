@@ -3,8 +3,11 @@ Cpp2Alf is a tool for transforming C++ Code to ALF. Developed in Microsoft Visua
 ### Prerequisites for Running the executable
 Microsoft Windows 7 SP1 or above 32bit (x86) or 64bit (x64)
 
-Microsoft .Net Framework 4.5.2
+Microsoft .Net Framework 3.5
 ### How to get the desired files
+
+- **Cpp2Alf_Executable.zip** file contains the executable binary file along dependencies which will run without any installation provided that system meets the requirements.
+
 - **CPP2ALF** Folder contains source code of Cpp2Alf.
 
 - **User Manual For Cpp2ALF.pdf** file contains the User Manual for running the tool.
@@ -13,6 +16,4 @@ Microsoft .Net Framework 4.5.2
 
 - **ToyExample** Folder contains a toy example which is tested in this tool.
 
-- **Cpp2Alf_Installer.zip** file contains the windows installer.
 
-- **Cpp2Alf_SelfExecutable** Folder contains the executable binary file which will run without any installation provided that system meets the requirements.
