@@ -39,7 +39,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.clbCppFilesList = new System.Windows.Forms.CheckedListBox();
             this.lbl_SrcMLFiles = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.trackBarCpp = new System.Windows.Forms.TrackBar();
             this.trackBarALF = new System.Windows.Forms.TrackBar();
             this.lbl_topLeft = new System.Windows.Forms.Label();
@@ -153,15 +152,6 @@
             this.lbl_SrcMLFiles.TabIndex = 7;
             this.lbl_SrcMLFiles.Text = "Source Files (0/0)";
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(199, 28);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 8;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // trackBarCpp
             // 
             this.trackBarCpp.Location = new System.Drawing.Point(210, 14);
@@ -232,7 +222,6 @@
             this.Controls.Add(this.cbCustomCode);
             this.Controls.Add(this.gp_bottom);
             this.Controls.Add(this.lbl_topLeft);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.lbl_SrcMLFiles);
             this.Controls.Add(this.clbCppFilesList);
             this.Controls.Add(this.label1);
@@ -271,7 +260,6 @@
         private System.Windows.Forms.CheckedListBox clbCppFilesList;
         private System.Windows.Forms.RichTextBox rtbALF;
         private System.Windows.Forms.Label lbl_SrcMLFiles;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TrackBar trackBarCpp;
         private System.Windows.Forms.TrackBar trackBarALF;
         private System.Windows.Forms.Label lbl_topLeft;

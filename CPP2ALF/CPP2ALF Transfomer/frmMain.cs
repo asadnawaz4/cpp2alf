@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
@@ -31,7 +30,7 @@ namespace CPP2ALF_Transfomer
                 Editor.ShowDialog(srcML, "srcML");
                 return;
             }
-                if (clbCppFilesList.SelectedIndex == -1)
+            if (clbCppFilesList.SelectedIndex == -1)
             {
                 MessageBox.Show("Please select at least one file");
                 return;
@@ -78,11 +77,11 @@ namespace CPP2ALF_Transfomer
         }
         private string GenerateSrcMl(string path)
         {
-            string programLocation = @"D:\Program Files\srcML 0.9.5\bin\srcml.exe";
+            string programLocation = @"srcML 0.9.5\bin\srcml.exe";
             string output_filename = txtOutputDirectory.Text + @"\tmp.tmp";
             string command = $" \"{path}\" -o \"{output_filename}\" option --register-ext h=C++";
 
-            if(!File.Exists(programLocation))
+            if (!File.Exists(programLocation))
             {
                 MessageBox.Show($"SrcML Program not found on the given location: {programLocation}");
                 return "";
@@ -201,30 +200,7 @@ namespace CPP2ALF_Transfomer
             UpdateChecks(fileNameOnly);
             //clbCppFilesList.Items.Cast<FileObject>().First(x => x.fileName == fileNameOnly + ".cpp");
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            clbCppFilesList.Items.Clear();
-            SourceFiles = new List<FileObject>();
-            string[] fileNames = Directory.GetFiles(@"D:\Asad_Developer\WorkspaceNeon\CPP_CASESTUDY").Where(x => x.EndsWith(".cpp") || x.EndsWith(".h")).ToArray();
-            int filesCount = 0;
-            int totalFiles = fileNames.Length;
-            foreach (string f in fileNames)
-            {
-                FileObject fo = new FileObject();
-                fo.fileName = Path.GetFileName(f);
-                fo.fileExtension = Path.GetExtension(fo.fileName);
-                fo.filePath = f;
-                fo.cppCode = File.ReadAllText(f);
-                fo.srcML = GenerateSrcMl(f);
-                clbCppFilesList.Items.Add(fo);
-                SourceFiles.Add(fo);
-
-                filesCount++;
-                lbl_SrcMLFiles.Text = $"Source Files ({filesCount}/{totalFiles})";
-            }
-        }
-
+        
         private void trackBarCpp_Scroll(object sender, EventArgs e)
         {
             rtbCPP.ZoomFactor = (float)trackBarCpp.Value / 10f;
@@ -279,12 +255,19 @@ namespace CPP2ALF_Transfomer
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if(cbCustomCode.Checked)
+            {
+                MessageBox.Show("Can't Save for custom code.");
+                return;
+            }
             string outputPath = Path.Combine(txtOutputDirectory.Text, "ALF Generated Code");
 
             if (!Directory.Exists(outputPath + "\\DefaultPkg"))
                 Directory.CreateDirectory(outputPath + "\\DefaultPkg");
             foreach (FileObject fo in SourceFiles)
             {
+                if (fo.fileExtension == ".h")
+                    continue;
                 if (fo.alfCode.Trim().Length == 0)
                 {
                     var res = MessageBox.Show("Some File's Alf code is not genereted yet. Do you want to continue?", "Sure", MessageBoxButtons.YesNo);
@@ -294,6 +277,7 @@ namespace CPP2ALF_Transfomer
                         break;
                 }
             }
+            string classesList = "";
             foreach (FileObject fo in SourceFiles.Where(x => x.fileExtension == ".cpp"))
             {
                 if (fo.alfCode.Trim().Length > 0)
@@ -301,13 +285,31 @@ namespace CPP2ALF_Transfomer
                     string fnwe = Path.GetFileNameWithoutExtension(fo.fileName);
                     string directory = outputPath;
                     if (!fo.MainFile)
-                         directory = Path.Combine(outputPath, "DefaultPkg");
+                        directory = Path.Combine(outputPath, "DefaultPkg");
 
                     string fileName = Path.Combine(directory, fnwe + ".alf");
                     File.WriteAllText(fileName, fo.alfCode);
 
                 }
             }
+            /// Write DefaultPkg.alf
+            foreach (FileObject fo in SourceFiles.Where(x => x.fileExtension == ".cpp"))
+            {
+                if (fo.alfCode.Trim().Length > 0)
+                {
+
+                    foreach (string line in fo.alfCode.Split(new[] { Environment.NewLine }, StringSplitOptions.None))
+                    {
+                        if (line.StartsWith("//") || line.StartsWith("/*"))
+                            continue;
+                        if (line.StartsWith("class"))
+                            classesList += line + ";" + Environment.NewLine;
+                    }
+                }
+            }
+            string defaultPkgFile = "package DefaultPkg" + Environment.NewLine + "{" + Environment.NewLine +
+        classesList + Environment.NewLine + "}";
+            File.WriteAllText(Path.Combine(outputPath, "DefaultPkg.alf"), defaultPkgFile);
             MessageBox.Show("Alf Code Generated to DefaultPkg in " + Environment.NewLine + outputPath);
 
         }
@@ -338,7 +340,7 @@ namespace CPP2ALF_Transfomer
             //FileObject fo = (FileObject)clbCppFilesList.SelectedItem;
             //foreach (var fo in clbCppFilesList.Items.Cast<FileObject>().Where(x => x.fileName.ToLower().EndsWith(".cpp")))
             AllGeneratingCode = true;
-            for(int iterator = 0;iterator<clbCppFilesList.Items.Count;iterator++)
+            for (int iterator = 0; iterator < clbCppFilesList.Items.Count; iterator++)
             {
                 var fo = (FileObject)clbCppFilesList.Items[iterator];
                 if (fo.fileName.EndsWith(".h"))
