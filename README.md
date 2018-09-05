@@ -6,7 +6,7 @@ Microsoft Windows 7 SP1 or above 32bit (x86) or 64bit (x64)
 Microsoft .Net Framework 3.5
 ### How to get the desired files
 
-- **Cpp2Alf_Executable.zip** file contains the executable binary file along dependencies which will run without any installation provided that system meets the requirements.
+- **Cpp2Alf_SelfExecutable.zip** file contains the executable binary file along dependencies which will run without any installation provided that system meets the requirements.
 
 - **CPP2ALF** Folder contains source code of Cpp2Alf.
 
